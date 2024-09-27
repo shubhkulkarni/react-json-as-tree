@@ -7,10 +7,11 @@ export const useTree = (root: objectType) => {
   const tree = useMemo(
     () =>
       Object.entries(root).map((i) => {
-        console.log(i);
-        if (typeof i[1] === "object")
-          return <Branch name={i[0]} root={i[1] as objectType} />;
-        else return <Leave name={i[0]} value={i[1] as primitive} />;
+        if (typeof i[1] === "object") {
+          let val = i[1];
+          if (Array.isArray(i[1])) val = objectifyArr(val as unknown[]);
+          return <Branch name={i[0]} root={val as objectType} />;
+        } else return <Leave name={i[0]} value={i[1] as primitive} />;
       }),
     []
   );
@@ -21,3 +22,5 @@ export const useTree = (root: objectType) => {
 
   return renderTree;
 };
+
+const objectifyArr = (list: unknown[]) => Object.assign({}, list);

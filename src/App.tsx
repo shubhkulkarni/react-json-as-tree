@@ -7,7 +7,15 @@ function App() {
         root={{
           person: {
             name: "Shubham",
-            address: { city: "Pune" },
+            address: {
+              city: "Pune",
+              lines: { first: "near baif road", second: "Mulik luxuria" },
+            },
+            profession: {
+              designation: "Software developer",
+              experience: 8,
+              languages: ["JavaScript", "TypeScript"],
+            },
           },
         }}
       />

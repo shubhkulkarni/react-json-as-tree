@@ -1,3 +1,4 @@
+import React from "react";
 import { primitive } from "./types";
 
 interface LeaveProps {
@@ -13,5 +14,6 @@ const Leave: React.FC<LeaveProps> = ({ name, value }: LeaveProps) => {
     </div>
   );
 };
+
 
 export default Leave;
