@@ -7,6 +7,7 @@ interface TreeProps {
 }
 
 const Tree: React.FC<TreeProps> = ({ root }: TreeProps) => {
+
   const renderTree = useTree(root);
 
   return renderTree();

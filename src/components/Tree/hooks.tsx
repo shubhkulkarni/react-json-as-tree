@@ -29,3 +29,20 @@ export const useTree = (root: objectType) => {
 };
 
 const objectifyArr = (list: unknown[]) => Object.assign({}, list);
+
+export const useJsonParser = (root: objectType | string) => {
+  const [result, setResult] = useState<objectType>({});
+  const [error, setError] = useState<string | null>(null);
+
+  if (typeof root === "object") return { result: root, error: null };
+
+  if (typeof root === "string") {
+    try {
+      const data = JSON.parse(root);
+      setResult(data);
+    } catch (e) {
+      setError("Invalid JSON!");
+    }
+  }
+  return { result, error };
+};
