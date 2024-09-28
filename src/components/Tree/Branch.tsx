@@ -24,7 +24,7 @@ const Branch: React.FC<BranchProps> = ({ name, root }: BranchProps) => {
         </button>
         <div className="name">{name}</div>
       </div>
-      <div className={`content ml-8 ${!isOpen && "hidden"}`}>
+      <div className={`content ml-6 ${!isOpen && "hidden"}`}>
         <Tree root={root} />
       </div>
     </div>
