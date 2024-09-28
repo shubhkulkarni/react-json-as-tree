@@ -8,8 +8,8 @@ export const useTree = (root: objectType) => {
     () =>
       Object.entries(root).map((i, idx) => {
         if (typeof i[1] === "object") {
-          let val = i[1];
-          if (Array.isArray(i[1])) val = objectifyArr(val as unknown[]);
+          let val = objectify(i[1]);
+
           return (
             <Branch key={idx + i[0]} name={i[0]} root={val as objectType} />
           );
@@ -45,4 +45,14 @@ export const useJsonParser = (root: objectType | string) => {
     }
   }
   return { result, error };
+};
+
+const objectify = (obj: object | null) => {
+  if (Array.isArray(obj)) return objectifyArr(obj as unknown[]);
+
+  if (obj instanceof Map) return Object.fromEntries(obj);
+
+  if (obj instanceof Set) return objectifyArr([...obj]);
+
+  return obj;
 };

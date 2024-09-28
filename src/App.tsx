@@ -1,8 +1,12 @@
 import Tree from "./components/Tree/Tree";
 
 function App() {
+  const m = new Map();
+  m.set("likes", 24);
+  const s = new Set()
+  s.add("ssk")
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-start justify-start h-screen">
       <Tree
         root={{
           person: {
@@ -14,7 +18,11 @@ function App() {
             profession: {
               designation: "Software developer",
               experience: 8,
-              languages: ["JavaScript", "TypeScript"],
+              languages: ["JavaScript", "TypeScript",{
+                type: "Frontend",
+                skils: ["html","css","JavaScript"]
+              }],
+              stats: s,
             },
           },
         }}

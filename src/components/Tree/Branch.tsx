@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
 import Tree from "./Tree";
-import { objectType } from "./types";
+import { BranchCustomProps, objectType } from "./types";
 import React from "react";
 
 interface BranchProps {
   name: string;
   root: objectType;
+  customProps?: BranchCustomProps;
 }
 
 const Branch: React.FC<BranchProps> = ({ name, root }: BranchProps) => {
@@ -23,7 +24,7 @@ const Branch: React.FC<BranchProps> = ({ name, root }: BranchProps) => {
         </button>
         <div className="name">{name}</div>
       </div>
-      <div className={`content ml-4 ${!isOpen && "hidden"}`}>
+      <div className={`content ml-8 ${!isOpen && "hidden"}`}>
         <Tree root={root} />
       </div>
     </div>
