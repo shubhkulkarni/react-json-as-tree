@@ -1,16 +1,14 @@
-To be updated -----
----
-
 # React JSON as Tree
 
-`react-json-as-tree` is a lightweight and highly customizable React component that takes JSON or JS objects as input and renders a collapsible tree structure. Styled with Tailwind CSS for easy integration with modern UI frameworks.
+`react-json-as-tree` is a TypeScript-based React component that renders a collapsible tree structure from a JSON or JS object. It offers high customization for rendering branch heads, tree leaves, and various display features, making it easy to visualize nested structures.
 
 ## Features
 
-- **Supports both JSON and JS Objects**: You can pass in JSON strings or JavaScript objects.
-- **Collapsible Nodes**: Each node in the tree is collapsible, allowing you to expand and collapse sections for better readability.
-- **Lightweight**: Minimal dependencies with simple integration.
-- **Customizable**: Easily style the component using Tailwind CSS classes.
+- **Supports both JSON and JS objects**: Pass valid JSON strings or JavaScript objects to generate a tree view.
+- **Customizable rendering**: Fine-tune how branches and leaves are displayed using custom renderers.
+- **Collapsible Nodes**: Easily control the default expansion of the tree and individual branches.
+- **Lightweight**: Built with minimal dependencies for quick integration into any React project.
+- **TypeScript support**: Full type definitions to ensure type safety.
 
 ## Installation
 
@@ -28,55 +26,113 @@ yarn add react-json-as-tree
 
 ## Usage
 
-Here's a basic example of how to use the `react-json-as-tree` component in your React project.
+Here's a basic example of how to use the `react-json-as-tree` component in a React TypeScript project.
 
-```jsx
+```tsx
 import React from "react";
-import JsonTree from "react-json-as-tree";
+import Tree from "react-json-as-tree";
+import Expand from "./Expand"; // Custom expand icon component
+import Collapse from "./Collapse"; // Custom collapse icon component
 
-const data = {
-  name: "John Doe",
-  age: 30,
+const root_ = {
+  name: "John",
+  age: 25,
+  isActive: true,
+  hobbies: ["reading", "gaming", "hiking"],
   address: {
     city: "New York",
     zip: "10001",
+    coordinates: {
+      lat: 40.7128,
+      lon: -74.0060
+    }
   },
-  hobbies: ["Reading", "Traveling"],
+  contact: {
+    email: "john@example.com",
+    phone: {
+      home: "123-456-7890",
+      work: "987-654-3210"
+    }
+  }
 };
+
 
 const App = () => {
   return (
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">JSON Tree Example</h1>
-      <JsonTree data={data} />
+      <Tree root={root_} />
     </div>
   );
 };
 
 export default App;
 ```
+![image](https://github.com/user-attachments/assets/b62fbb78-5058-454a-9452-2aaf2f372cbf)
 
 ## Props
 
-The `react-json-as-tree` component accepts the following props:
+### `Tree`
 
-| Prop  | Type            | Description                                     |
-|-------|-----------------|-------------------------------------------------|
-| `data`| `Object` or `JSON`| The input data (JS Object or JSON string) that will be rendered as a tree. |
-| `collapsed` | `boolean`  | (Optional) Whether to collapse all nodes by default. Default is `false`. |
-| `theme` | `string`      | (Optional) Tailwind CSS classes to style the tree. Default is `text-gray-700`. |
+The main `Tree` component accepts the following props:
 
-## Customization
+| Prop         | Type                                  | Description                                                              |
+|--------------|---------------------------------------|--------------------------------------------------------------------------|
+| `root`       | `objectType` \| `string`              | The input data (JS Object or JSON string) that will be rendered as a tree. |
+| `branchProps`| `BranchCustomProps`                   | (Optional) Customization options for the branches (expand/collapse nodes).|
+| `leaveProps` | `LeaveCustomProps`                    | (Optional) Customization options for the leaves (final nodes).            |
 
-Since this component uses Tailwind CSS, you can easily customize its appearance by overriding the default styles:
+### `BranchCustomProps`
 
-```jsx
-<JsonTree data={data} theme="text-blue-700 bg-gray-100 p-2" />
+| Prop                  | Type                                                | Default | Description                                                        |
+|-----------------------|-----------------------------------------------------|---------|--------------------------------------------------------------------|
+| `expandIcon`           | `React.ReactElement`                                | `+`     | The icon used to expand branches.                                  |
+| `collapseIcon`         | `React.ReactElement`                                | `-`     | The icon used to collapse branches.                                |
+| `defaultExpanded`      | `boolean`                                           | `true`  | Whether branches are expanded by default.                          |
+| `branchHeadRenderer`   | `(name: string, isOpen: boolean) => React.ReactElement` | -       | Function to customize the rendering of branch heads.                |
+| `indentation`          | `number`                                            | `24`    | The indentation width in pixels for nested branches.                         |
+| `hideDepthLines`       | `boolean`                                           | `false` | Whether to hide the depth lines (vertical lines between nodes).     |
+
+### `LeaveCustomProps`
+
+| Prop             | Type                                                         | Default | Description                                                    |
+|------------------|--------------------------------------------------------------|---------|----------------------------------------------------------------|
+| `hideKeys`        | `boolean`                                                    | `false` | Whether to hide keys for leaves.                               |
+| `leaveRenderer`   | `(name: string, value: primitive) => React.ReactElement`     | -       | Function to customize the rendering of tree leaves.            |
+
+### Type Definitions
+
+The component uses the following TypeScript types for type safety:
+
+```ts
+export type objectType = Record<string, unknown>;
+
+export type primitive = string | null | undefined | number | boolean;
+
+export interface BranchCustomProps {
+  expandIcon?: React.ReactElement;
+  collapseIcon?: React.ReactElement;
+  defaultExpanded?: boolean;
+  branchHeadRenderer?: (name: string, isOpen: boolean) => React.ReactElement;
+  indentation?: number;
+  hideDepthLines?: boolean;
+}
+
+export interface LeaveCustomProps {
+  hideKeys?: boolean;
+  leaveRenderer?: (name: string, value: primitive) => React.ReactElement;
+}
+
+interface TreeProps {
+  root: objectType | string;
+  branchProps?: BranchCustomProps;
+  leaveProps?: LeaveCustomProps;
+}
 ```
 
 ## Example
 
-```jsx
+```tsx
 const jsonData = {
   company: "Example Corp",
   employees: [
@@ -89,19 +145,34 @@ const jsonData = {
   },
 };
 
-<JsonTree data={jsonData} collapsed={true} />
+<Tree
+  root={jsonData}
+  branchProps={{
+    expandIcon: <Expand />, // Custom expand icon (default: +)
+    collapseIcon: <Collapse />, // Custom collapse icon (default: -)
+    defaultExpanded: false, // Collapse all branches by default
+    hideDepthLines: true, // Hide vertical depth lines
+    indentation: 24, // Indentation width (default: 24)
+    branchHeadRenderer: (name, isOpen) => <div>{name}</div>, // Custom rendering for branch head (optional)
+  }}
+  leaveProps={{
+    hideKeys: false, // Show keys for each leaf (default: false)
+    leaveRenderer: (name, value) => (
+      <div>
+        {name} : {value as string}
+      </div>
+    ), // Custom rendering for leaves
+  }}
+/>
 ```
 
-This will render a tree where all nodes are collapsed by default.
+## Customization
 
-## Dependencies
-
-- **React**: ^17.0.0
-- **Tailwind CSS**: ^3.0.0
+Since this component is built with TypeScript and React, you can easily customize both the icons, renderers, and behaviors of the tree. Tailor it to fit your UI requirements, and style it with your preferred CSS framework or custom styles.
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
+Feel free to submit issues, fork the repository, and create pull requests. Contributions are highly appreciated!
 
 ## License
 
