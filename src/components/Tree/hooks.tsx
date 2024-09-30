@@ -1,9 +1,18 @@
-import { useCallback, useMemo, useState } from "react";
-import { objectType, primitive } from "./types";
+import { useCallback, useMemo } from "react";
+import {
+  BranchCustomProps,
+  LeaveCustomProps,
+  objectType,
+  primitive,
+} from "./types";
 import Branch from "./Branch";
 import Leave from "./Leave";
 
-export const useTree = (root: objectType) => {
+export const useTree = (
+  root: objectType,
+  branchProps?: BranchCustomProps,
+  leaveProps?: LeaveCustomProps
+) => {
   const tree = useMemo(
     () =>
       Object.entries(root).map((i, idx) => {
@@ -11,11 +20,22 @@ export const useTree = (root: objectType) => {
           let val = objectify(i[1]);
 
           return (
-            <Branch key={idx + i[0]} name={i[0]} root={val as objectType} />
+            <Branch
+              customProps={branchProps}
+              leaveProps={leaveProps}
+              key={idx + i[0]}
+              name={i[0]}
+              root={val as objectType}
+            />
           );
         } else
           return (
-            <Leave key={idx + i[0]} name={i[0]} value={i[1] as primitive} />
+            <Leave
+              customProps={leaveProps}
+              key={idx + i[0]}
+              name={i[0]}
+              value={i[1] as primitive}
+            />
           );
       }),
     [root]
@@ -31,20 +51,20 @@ export const useTree = (root: objectType) => {
 const objectifyArr = (list: unknown[]) => Object.assign({}, list);
 
 export const useJsonParser = (root: objectType | string) => {
-  const [result, setResult] = useState<objectType>({});
-  const [error, setError] = useState<string | null>(null);
-
-  if (typeof root === "object") return { result: root, error: null };
+  if (typeof root === "object") {
+    return root;
+  }
 
   if (typeof root === "string") {
     try {
-      const data = JSON.parse(root);
-      setResult(data);
-    } catch (e) {
-      setError("Invalid JSON!");
+      const result = JSON.parse(root);
+      return result;
+    } catch (_e) {
+      return { Error: "Invalid JSON !" };
     }
   }
-  return { result, error };
+
+  return { Error: "Please pass valid JavaScript object or JSON as input" };
 };
 
 const objectify = (obj: object | null) => {

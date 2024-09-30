@@ -1,19 +1,26 @@
 import React from "react";
-import { primitive } from "./types";
+import { primitive, LeaveCustomProps } from "./types";
 
 interface LeaveProps {
   name: string;
   value: primitive;
+  customProps?: LeaveCustomProps;
 }
 
-const Leave: React.FC<LeaveProps> = ({ name, value }: LeaveProps) => {
+const Leave: React.FC<LeaveProps> = ({
+  name,
+  value,
+  customProps = {},
+}: LeaveProps) => {
+  
+  const { hideKeys = false } = customProps;
+  
   return (
     <div className="flex items-center justify-start gap-2">
-      <div className="stem italic text-blue-800">{name} :</div>
+      {!hideKeys && <div className="stem italic text-blue-800">{name} :</div>}
       <div className="leave">{value}</div>
     </div>
   );
 };
-
 
 export default Leave;

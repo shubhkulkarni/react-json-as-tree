@@ -1,14 +1,21 @@
 import React from "react";
-import { useTree } from "./hooks";
-import { objectType } from "./types";
+import { useJsonParser, useTree } from "./hooks";
+import { BranchCustomProps, LeaveCustomProps, objectType } from "./types";
 
 interface TreeProps {
-  root: objectType;
+  root: objectType | string;
+  branchProps?: BranchCustomProps;
+  leaveProps?: LeaveCustomProps;
 }
 
-const Tree: React.FC<TreeProps> = ({ root }: TreeProps) => {
+const Tree: React.FC<TreeProps> = ({
+  root,
+  branchProps,
+  leaveProps,
+}: TreeProps) => {
+  const parsed = useJsonParser(root);
 
-  const renderTree = useTree(root);
+  const renderTree = useTree(parsed, branchProps, leaveProps);
 
   return renderTree();
 };
