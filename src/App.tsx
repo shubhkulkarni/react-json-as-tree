@@ -33,18 +33,7 @@ function App() {
 
   return (
     <div className="flex items-start justify-start h-screen">
-      <Tree
-        root={root_}
-        branchProps={{
-          expandIcon: <Expand />,
-          collapseIcon: <Collapse />,
-          defaultExpanded: false,
-          hideDepthLines: true,
-        }}
-        leaveProps={{
-          hideKeys: false,
-        }}
-      />
+      <Tree root={root_} />
     </div>
   );
 }
