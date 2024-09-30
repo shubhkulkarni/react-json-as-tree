@@ -1,5 +1,5 @@
 import React from "react";
-import { primitive, LeaveCustomProps } from "./types";
+import { primitive, LeaveCustomProps } from "./types/types";
 
 interface LeaveProps {
   name: string;

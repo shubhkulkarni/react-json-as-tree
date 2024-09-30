@@ -4,9 +4,9 @@ import {
   LeaveCustomProps,
   objectType,
   primitive,
-} from "./types";
-import Branch from "./Branch";
-import Leave from "./Leave";
+} from "../types/types";
+import Branch from "../Branch";
+import Leave from "../Leave";
 
 export const useTree = (
   root: objectType,

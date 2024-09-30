@@ -15,3 +15,9 @@ export interface LeaveCustomProps {
   hideKeys?: boolean;
   leaveRenderer?: (name: string, value: primitive) => React.ReactElement;
 }
+
+export interface TreeProps {
+  root: objectType | string;
+  branchProps?: BranchCustomProps;
+  leaveProps?: LeaveCustomProps;
+}

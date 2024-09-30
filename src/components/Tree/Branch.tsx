@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 import Tree from "./Tree";
-import { BranchCustomProps, LeaveCustomProps, objectType } from "./types";
+import { BranchCustomProps, LeaveCustomProps, objectType } from "./types/types";
 import React from "react";
-import Expand from "../Icons/Expand";
-import Collapse from "../Icons/Collapse";
+import Expand from "./Icons/Expand";
+import Collapse from "./Icons/Collapse";
 
 interface BranchProps {
   name: string;
