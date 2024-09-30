@@ -51,6 +51,9 @@ export const useTree = (
 const objectifyArr = (list: unknown[]) => Object.assign({}, list);
 
 export const useJsonParser = (root: objectType | string) => {
+  if (root === null)
+    return { Error: "Please pass valid JavaScript object or JSON as an input" };
+
   if (typeof root === "object") {
     return root;
   }
@@ -64,7 +67,7 @@ export const useJsonParser = (root: objectType | string) => {
     }
   }
 
-  return { Error: "Please pass valid JavaScript object or JSON as input" };
+  return { Error: "Please pass valid JavaScript object or JSON as an input" };
 };
 
 const objectify = (obj: object | null) => {
