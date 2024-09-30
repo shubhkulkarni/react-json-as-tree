@@ -1,5 +1,9 @@
 {
   "name": "react-json-as-tree",
+  "author": {
+    "name": "Shubham Kulkarni",
+    "email": "shubhamkulkarni.sh@gmail.com"
+  },
   "private": true,
   "version": "1.0.1",
   "type": "module",
