@@ -166,6 +166,20 @@ const jsonData = {
 />
 ```
 
+## Notes
+
+1. **Maps are represented as objects**  
+   Since JavaScript `Maps` are not fully supported, they are represented using standard objects, where keys are converted to strings.
+
+2. **Sets are represented as Arrays**  
+   JavaScript `Sets` are represented as arrays within the tree structure. Duplicate entries will not be visible in the tree.
+
+3. **Functions are not supported as keys**  
+   Currently, the tree structure does not support functions as object keys. Future updates may include support.
+
+4. **Issues, Bugs, and Bug Fixes are welcomed**  
+   Please feel free to submit any issues or bugs you encounter. We also welcome bug fixes and improvements through pull requests!
+
 ## Customization
 
 Since this component is built with TypeScript and React, you can easily customize both the icons, renderers, and behaviors of the tree. Tailor it to fit your UI requirements, and style it with your preferred CSS framework or custom styles.
