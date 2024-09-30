@@ -68,7 +68,7 @@ const App = () => {
 
 export default App;
 ```
-![image](https://github.com/user-attachments/assets/b62fbb78-5058-454a-9452-2aaf2f372cbf)
+![image](https://github.com/user-attachments/assets/19f2cd33-f217-4c04-90fd-293981bfc05f)
 
 ## Props
 
@@ -86,8 +86,8 @@ The main `Tree` component accepts the following props:
 
 | Prop                  | Type                                                | Default | Description                                                        |
 |-----------------------|-----------------------------------------------------|---------|--------------------------------------------------------------------|
-| `expandIcon`           | `React.ReactElement`                                | `+`     | The icon used to expand branches.                                  |
-| `collapseIcon`         | `React.ReactElement`                                | `-`     | The icon used to collapse branches.                                |
+| `expandIcon`           | `React.ReactElement`                                | `ChevronRight`     | The icon used to expand branches.                                  |
+| `collapseIcon`         | `React.ReactElement`                                | `ChevronDown`     | The icon used to collapse branches.                                |
 | `defaultExpanded`      | `boolean`                                           | `true`  | Whether branches are expanded by default.                          |
 | `branchHeadRenderer`   | `(name: string, isOpen: boolean) => React.ReactElement` | -       | Function to customize the rendering of branch heads.                |
 | `indentation`          | `number`                                            | `24`    | The indentation width in pixels for nested branches.                         |
