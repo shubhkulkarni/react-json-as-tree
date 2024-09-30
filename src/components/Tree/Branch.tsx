@@ -20,6 +20,9 @@ const Branch: React.FC<BranchProps> = ({
     expandIcon = "+",
     collapseIcon = "-",
     defaultExpanded = true,
+    branchHeadRenderer,
+    indentation,
+    hideDepthLines = false,
   } = customProps;
 
   const [isOpen, setIsOpen] = useState<boolean>(defaultExpanded);
@@ -30,18 +33,19 @@ const Branch: React.FC<BranchProps> = ({
 
   return (
     <div className="flex flex-col items-start justify-start">
-      <button
-        type="button"
-        onClick={toggleOpen}
-        className="name flex justify-start items-center gap-2"
-      >
-        <div>{isOpen ? collapseIcon : expandIcon}</div>
-        <div className="name">{name}</div>
+      <button type="button" onClick={toggleOpen} className="name">
+        {branchHeadRenderer?.(name, isOpen) ?? (
+          <div className="flex justify-start items-center gap-2">
+            <div>{isOpen ? collapseIcon : expandIcon}</div>
+            <div className="name">{name}</div>
+          </div>
+        )}
       </button>
       <div
-        className={`content pl-6 ${
-          !isOpen && "hidden"
-        } border-l border-l-slate-300`}
+        className={`content pl-6 ${!isOpen && "hidden"} ${
+          !hideDepthLines ? "border-l" : ""
+        } border-l-slate-300`}
+        style={indentation ? { paddingLeft: indentation + "px" } : undefined}
       >
         <Tree root={root} branchProps={customProps} leaveProps={leaveProps} />
       </div>

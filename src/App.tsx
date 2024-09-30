@@ -39,6 +39,7 @@ function App() {
           expandIcon: <Expand />,
           collapseIcon: <Collapse />,
           defaultExpanded: false,
+          hideDepthLines: true,
         }}
         leaveProps={{
           hideKeys: false,
