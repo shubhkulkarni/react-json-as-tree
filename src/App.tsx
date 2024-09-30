@@ -1,5 +1,3 @@
-import Collapse from "./components/Icons/Collapse";
-import Expand from "./components/Icons/Expand";
 import Tree from "./components/Tree/Tree";
 
 function App() {

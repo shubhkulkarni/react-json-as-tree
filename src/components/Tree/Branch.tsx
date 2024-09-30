@@ -2,6 +2,8 @@ import { useCallback, useState } from "react";
 import Tree from "./Tree";
 import { BranchCustomProps, LeaveCustomProps, objectType } from "./types";
 import React from "react";
+import Expand from "../Icons/Expand";
+import Collapse from "../Icons/Collapse";
 
 interface BranchProps {
   name: string;
@@ -17,8 +19,8 @@ const Branch: React.FC<BranchProps> = ({
   leaveProps,
 }: BranchProps) => {
   const {
-    expandIcon = "+",
-    collapseIcon = "-",
+    expandIcon = <Expand />,
+    collapseIcon = <Collapse />,
     defaultExpanded = true,
     branchHeadRenderer,
     indentation,
