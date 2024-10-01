@@ -1,7 +1,6 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Tree from "./Tree";
 import { BranchCustomProps, LeaveCustomProps, objectType } from "./types/types";
-import React from "react";
 import Expand from "./Icons/Expand";
 import Collapse from "./Icons/Collapse";
 
