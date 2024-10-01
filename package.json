@@ -6,13 +6,13 @@
   },
   "description": "A highly customizable and a tiny pure React component to render JSON or Javascript object data as a tree.",
   "private": false,
-  "version": "1.1.7",
+  "version": "1.1.9",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "style": "dist/style.css",
-  "license":"MIT",
+  "license": "MIT",
   "homepage": "https://github.com/shubhkulkarni/react-json-as-tree",
   "bugs": {
     "url": "https://github.com/shubhkulkarni/react-json-as-tree/issues"
@@ -21,21 +21,29 @@
     "type": "git",
     "url": "https://github.com/shubhkulkarni/react-json-as-tree.git"
   },
-  "keywords": ["react json tree","json", "react", "react json viewer", "react json as tree", "javascript object tree","React JSON tree",
-  "JSON tree component",
-  "React tree view",
-  "JSON object tree",
-  "JavaScript object tree",
-  "React nested tree structure",
-  "JSON tree renderer",
-  "React hierarchical view",
-  "JSON viewer React",
-  "JSON to tree React",
-  "React tree component",
-  "JSON data tree React",
-  "React tree structure",
-  "React expandable tree",
-  "JSON object explorer"],
+  "keywords": [
+    "react json tree",
+    "json",
+    "react",
+    "react json viewer",
+    "react json as tree",
+    "javascript object tree",
+    "React JSON tree",
+    "JSON tree component",
+    "React tree view",
+    "JSON object tree",
+    "JavaScript object tree",
+    "React nested tree structure",
+    "JSON tree renderer",
+    "React hierarchical view",
+    "JSON viewer React",
+    "JSON to tree React",
+    "React tree component",
+    "JSON data tree React",
+    "React tree structure",
+    "React expandable tree",
+    "JSON object explorer"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
@@ -57,10 +65,8 @@
     "preview": "vite preview",
     "package-publish": "npm version patch && npm run build && npm publish"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },

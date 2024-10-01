@@ -21,6 +21,7 @@ export default defineConfig({
         "react",
         "react-dom",
         "node_modules/react-json-as-tree/dist/style.css",
+        "react/jsx-runtime",
       ],
       output: {
         globals: {
