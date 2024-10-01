@@ -84,23 +84,23 @@ The main `Tree` component accepts the following props:
 
 ### `BranchCustomProps`
 
-| Prop                 | Type                                                                     | Default        | Description                                                     |
-| -------------------- | ------------------------------------------------------------------------ | -------------- | --------------------------------------------------------------- |
-| `expandIcon`         | `React.ReactElement`                                                     | `ChevronRight` | The icon used to expand branches.                               |
-| `collapseIcon`       | `React.ReactElement`                                                     | `ChevronDown`  | The icon used to collapse branches.                             |
-| `defaultExpanded`    | `boolean`                                                                | `true`         | Whether branches are expanded by default.                       |
-| `branchHeadRenderer` | `(name: string, isOpen: boolean,root: objectType) => React.ReactElement` | -              | Function to customize the rendering of branch heads.            |
-| `indentation`        | `number`                                                                 | `24`           | The indentation width in pixels for nested branches.            |
-| `hideDepthLines`     | `boolean`                                                                | `false`        | Whether to hide the depth lines (vertical lines between nodes). |
-| `onBranchHeadClick`  | `(name: string, isOpen: boolean, root: objectType) => void/Promise<void>`| -              | Function to handle onClick event of heads.                      |
+| Prop                 | Type                                                                      | Default        | Description                                                     |
+| -------------------- | ------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------- |
+| `expandIcon`         | `React.ReactElement`                                                      | `ChevronRight` | The icon used to expand branches.                               |
+| `collapseIcon`       | `React.ReactElement`                                                      | `ChevronDown`  | The icon used to collapse branches.                             |
+| `defaultExpanded`    | `boolean`                                                                 | `true`         | Whether branches are expanded by default.                       |
+| `branchHeadRenderer` | `(name: string, isOpen: boolean,root: objectType) => React.ReactElement`  | -              | Function to customize the rendering of branch heads.            |
+| `indentation`        | `number`                                                                  | `24`           | The indentation width in pixels for nested branches.            |
+| `hideDepthLines`     | `boolean`                                                                 | `false`        | Whether to hide the depth lines (vertical lines between nodes). |
+| `onBranchHeadClick`  | `(name: string, isOpen: boolean, root: objectType) => void/Promise<void>` | -              | Function to handle onClick event of heads.                      |
 
 ### `LeaveCustomProps`
 
-| Prop            | Type                                                     | Default        | Description                                         |
-| --------------- | -------------------------------------------------------- | -------------- | --------------------------------------------------- |
-| `hideKeys`      | `boolean`                                                | `false`        | Whether to hide keys for leaves.                    |
-| `leaveRenderer` | `(name: string, value: primitive) => React.ReactElement` | -              | Function to customize the rendering of tree leaves. |
-| `onLeaveClick`  | `(name: string, value: primitive) => void/Promise<void>` | -              | Function to handle onClick event of leaves.         |
+| Prop            | Type                                                     | Default | Description                                         |
+| --------------- | -------------------------------------------------------- | ------- | --------------------------------------------------- |
+| `hideKeys`      | `boolean`                                                | `false` | Whether to hide keys for leaves.                    |
+| `leaveRenderer` | `(name: string, value: primitive) => React.ReactElement` | -       | Function to customize the rendering of tree leaves. |
+| `onLeaveClick`  | `(name: string, value: primitive) => void/Promise<void>` | -       | Function to handle onClick event of leaves.         |
 
 ### Type Definitions
 
@@ -115,14 +115,24 @@ export interface BranchCustomProps {
   expandIcon?: React.ReactElement;
   collapseIcon?: React.ReactElement;
   defaultExpanded?: boolean;
-  branchHeadRenderer?: (name: string, isOpen: boolean) => React.ReactElement;
+  branchHeadRenderer?: (
+    name: string,
+    isOpen: boolean,
+    root: objectType
+  ) => React.ReactElement;
   indentation?: number;
   hideDepthLines?: boolean;
+  onBranchHeadClick?: (
+    name: string,
+    isOpen: boolean,
+    root: objectType
+  ) => void | Promise<void>;
 }
 
 export interface LeaveCustomProps {
   hideKeys?: boolean;
   leaveRenderer?: (name: string, value: primitive) => React.ReactElement;
+  onLeaveClick?: (name: string, value: primitive) => void | Promise<void>;
 }
 
 interface TreeProps {
