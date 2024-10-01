@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const files = ['index.es.js', 'index.umd.js'];
+const files = ['dist/index.es.js', 'dist/index.umd.js'];
 const oldText = 'node_modules/react-json-as-tree/dist/style.css';
 const newText = './style.css';
 

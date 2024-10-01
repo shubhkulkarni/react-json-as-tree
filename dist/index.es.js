@@ -1,6 +1,6 @@
 import { jsx as r, jsxs as l } from "react/jsx-runtime";
 import { useState as N, useCallback as f, useMemo as y } from "react";
-import "node_modules/react-json-as-tree/dist/style.css";
+import "./style.css";
 const g = () => /* @__PURE__ */ r(
   "svg",
   {
