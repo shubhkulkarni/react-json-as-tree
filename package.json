@@ -6,7 +6,7 @@
   },
   "description": "A highly customizable and a tiny pure React component to render JSON or Javascript object data as a tree.",
   "private": false,
-  "version": "1.1.9",
+  "version": "1.1.10",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
