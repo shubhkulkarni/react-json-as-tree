@@ -4,10 +4,11 @@
     "name": "Shubham Kulkarni",
     "email": "shubhamkulkarni.sh@gmail.com"
   },
-  "private": true,
-  "version": "1.0.1",
+  "description": "A highly customizable and a tiny pure React component to render JSON or Javascript object data as a tree.",
+  "private": false,
+  "version": "1.1.0",
   "type": "module",
-  "scripts": {
+    "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
