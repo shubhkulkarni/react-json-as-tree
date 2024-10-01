@@ -12,15 +12,18 @@ const Leave: React.FC<LeaveProps> = ({
   value,
   customProps = {},
 }: LeaveProps) => {
-  const { hideKeys = false, leaveRenderer } = customProps;
+  const { hideKeys = false, leaveRenderer, onLeaveClick } = customProps;
 
   return leaveRenderer ? (
     leaveRenderer(name, value)
   ) : (
-    <div className="flex items-center justify-start gap-2">
+    <button
+      onClick={() => onLeaveClick?.(name, value)}
+      className="flex items-center justify-start gap-2"
+    >
       {!hideKeys && <div className="stem italic text-blue-800">{name} :</div>}
       <div className="leave">{value}</div>
-    </div>
+    </button>
   );
 };
 

@@ -24,18 +24,20 @@ const Branch: React.FC<BranchProps> = ({
     branchHeadRenderer,
     indentation,
     hideDepthLines = false,
+    onBranchHeadClick,
   } = customProps;
 
   const [isOpen, setIsOpen] = useState<boolean>(defaultExpanded);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
-  }, []);
+    onBranchHeadClick?.(name, isOpen, root);
+  }, [name, isOpen, root, onBranchHeadClick]);
 
   return (
     <div className="flex flex-col items-start justify-start">
       <button type="button" onClick={toggleOpen} className="name">
-        {branchHeadRenderer?.(name, isOpen) ?? (
+        {branchHeadRenderer?.(name, isOpen, root) ?? (
           <div className="flex justify-start items-center gap-2">
             <div>{isOpen ? collapseIcon : expandIcon}</div>
             <div className="name">{name}</div>
