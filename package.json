@@ -63,7 +63,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "package-publish": "npm version patch && npm run build && npm publish"
+    "add-styles": "node addStyles.script.js",
+    "package-publish": "npm version patch && npm run build && npm run add-styles && npm publish"
   },
   "dependencies": {},
   "peerDependencies": {
