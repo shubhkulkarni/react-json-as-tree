@@ -19,7 +19,8 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "react",
-        "react-dom"
+        "react-dom",
+        "node_modules/react-json-as-tree/dist/style.css",
       ],
       output: {
         globals: {
